@@ -1,0 +1,59 @@
+<div>
+    <div class="row g-2">
+        <h3>Поиск товаров</h3>
+        <div class="col-6 col-md-2">
+            <form novalidate ng-submit="loadProducts()">
+                <div class="form-floating input-group-sm">
+                    <input type="text" class="form-control" id="filterCategory" placeholder="" ng-model="filter.category_part">
+                    <label for="filterCategory">Категория продукта</label>
+                </div>
+                <p></p>
+                <div class="form-floating input-group-sm">
+                    <input type="text" class="form-control" id="filterTitle" placeholder="" ng-model="filter.title_part">
+                    <label for="filterTitle">Название продукта</label>
+                </div>
+                <p></p>
+                <div class="form-floating input-group-sm">
+                    <input type="number" class="form-control" id="filterMinPrice" placeholder="" ng-model="filter.min_price">
+                    <label for="filterMinPrice">Мин. цена</label>
+                </div>
+                <p></p>
+                <div class="form-floating input-group-sm">
+                    <input type="number" class="form-control" id="filterMaxPrice" placeholder="" ng-model="filter.max_price">
+                    <label for="filterMaxPrice">Макс. цена</label>
+                </div>
+                <p></p>
+                <button class="btn btn-outline-warning btn-sm" style="width: 100%;" type="submit">Применить</button>
+            </form>
+        </div>
+        <div class="col-sm-6 col-md-10">
+            <h3>Каталог товаров</h3>
+            <table class="table table-hover">
+                <tr>
+                    <td>ID</td>
+                    <td>Название</td>
+                    <td>Цена</td>
+                    <td></td>
+                </tr>
+                <tbody>
+                <tr ng-repeat="p in ProductsPage.content">
+                    <td>{{p.id}}</td>
+                    <td>{{p.title}}</td>
+                    <td>{{p.price}}</td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="addToCart(p.id)">Добавить в корзину</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <p></p>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li class="page-item" ng-repeat="pageIndex in paginationArray">
+                        <button class="page-link" ng-click="loadProducts(pageIndex)">{{pageIndex}}</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

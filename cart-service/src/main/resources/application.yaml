@@ -1,0 +1,11 @@
+server:
+  port: 8166
+  servlet:
+    context-path: /web-market-cart
+utils:
+  cart:
+    prefix: SPRING_WEB_
+integration:
+  core-service:
+    url: http://localhost:5555/core
+

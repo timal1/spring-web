@@ -1,0 +1,24 @@
+server:
+  port: 8188
+  servlet:
+    context-path: /web-market-auth
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: cloud-postgres
+    password: cloud-postgres
+    url: jdbc:postgresql://192.168.99.101:5432/cloud-postgres
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        ddl-auto: update
+
+    show-sql: true
+    generate-ddl: true
+    database: postgresql
+
+jwt:
+  secret: h4f8093h4f983yhrt9834hr0934hf0hf493g493gf438rh438th34g34g
+  lifetime: 360000000

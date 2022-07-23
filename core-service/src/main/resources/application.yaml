@@ -1,0 +1,26 @@
+server:
+  port: 8189
+  servlet:
+    context-path: /web-market-core
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: cloud-postgres
+    password: cloud-postgres
+    url: jdbc:postgresql://192.168.99.101:5432/cloud-postgres
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        ddl-auto: update
+
+    show-sql: true
+    generate-ddl: true
+    database: postgresql
+integrations:
+  cart-service:
+    url: http://localhost:5555/cart
+    connect-timeout: 2000
+    read-timeout: 10000
+    write-timeout: 2000

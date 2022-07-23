@@ -1,0 +1,53 @@
+server:
+  port: 5555
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedMethods:
+              - GET
+              - POST
+            allowedHeaders: "*"
+      routes:
+        - id: core-service
+          uri: http://localhost:8189/
+          predicates:
+            - Path=/core/**
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/web-market-core
+            - JwtAuthFilter
+        - id: cart-service
+          uri: http://localhost:8166/
+          predicates:
+            - Path=/cart/**
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/web-market-cart
+            - JwtAuthFilter
+        - id: auth-service
+          uri: http://localhost:8188/
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/web-market-auth
+            - JwtAuthFilter
+
+jwt:
+  secret: h4f8093h4f983yhrt9834hr0934hf0hf493g493gf438rh438th34g34g
+
+#logging:
+#  level:
+#    reactor:
+#      netty: TRACE
+#    org:
+#      springframework:
+#        cloud:
+#          gateway: TRACE
