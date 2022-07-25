@@ -3,6 +3,7 @@ package com.timal1.spring.web.core.controller;
 
 import com.timal1.spring.web.api.core.OrderDetailsDto;
 import com.timal1.spring.web.api.core.OrderDto;
+import com.timal1.spring.web.api.exeptions.ResourceNotFoundException;
 import com.timal1.spring.web.core.services.OrderService;
 import com.timal1.spring.web.core.converters.OrderConverter;
 import io.swagger.v3.oas.annotations.Operation;
@@ -54,5 +55,20 @@ public class OrderController {
     public List<OrderDto> getCurrentUserOrders(@RequestHeader String username) {
         return orderService.findOrdersByUserName(username).stream()
                 .map(orderConverter::entityToDto).collect(Collectors.toList());
+    }
+
+    @Operation(
+            summary = "Получение заказа по id",
+            responses = {
+                    @ApiResponse(
+                            description = "Успешный ответ", responseCode = "200",
+                            content = @Content(schema = @Schema(implementation = OrderDto.class))
+                    )
+            }
+    )
+    @GetMapping("/{id}")
+    public OrderDto getOrderById(@PathVariable Long id) {
+        return orderConverter.entityToDto(orderService.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("ORDER 404")));
     }
 }

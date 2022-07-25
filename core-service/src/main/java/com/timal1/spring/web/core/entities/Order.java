@@ -38,6 +38,9 @@ public class Order {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "status")
+    private String status;
+
     @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JsonIgnore
     private List<OrderItem> items;
