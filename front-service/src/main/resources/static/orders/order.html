@@ -5,12 +5,16 @@
             <td>ID</td>
             <td>Адрес доставки</td>
             <td>Стоимость</td>
+            <td></td>
         </tr>
         <tbody>
         <tr ng-repeat="order in myOrders">
             <td>{{order.id}}</td>
             <td>{{order.address}}</td>
             <td>{{order.totalPrice}}</td>
+            <td>
+                <button class="btn btn-primary" ng-click="goToPay(order.id)">Оплатить</button>
+            </td>
         </tr>
         </tbody>
     </table>

@@ -27,7 +27,7 @@ cart-service - http://localhost:8189/web-market-cart/swagger-ui/index.html
 Docker:
 ---
 Для создания  и запуска каждого сервиса в Docker перейти в корневую директорию каждого сервиса,  
-где лежит фаЙл docker-compose.yml и запустить команду:  
+где лежит файл docker-compose.yml и запустить команду:  
 ```  
 docker-compose up -d  
 ```
