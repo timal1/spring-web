@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>spring-web</artifactId>
         <groupId>com.timal1</groupId>
+        <artifactId>spring-web</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
